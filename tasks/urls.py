@@ -1,9 +1,11 @@
 from django.urls import path
-from tasks.views import IndexView
+from tasks.views import TaskListView, TagListView
 
 
 urlpatterns = [
-    path("", IndexView.as_view(), name="home")
+    path("", TaskListView.as_view(), name="task_list"),
+    path("tags/", TagListView.as_view(), name="tag_list"),
+
 ]
 
 app_name = "tasks"
