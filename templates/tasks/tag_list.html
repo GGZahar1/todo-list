@@ -7,7 +7,7 @@
 {% block content %}
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>Tags</h1>
-    <a href="#" class="btn btn-primary">
+    <a href="{% url "tasks:tag-create" %}" class="btn btn-primary">
       Add
     </a>
   </div>
@@ -24,13 +24,13 @@
         <tr>
           <td>{{ tag.name }}</td>
           <td>
-            <a href="#"
+            <a href="{% url "tasks:tag-update" tag.id%}"
                class="btn btn-secondary">
               Update
             </a>
           </td>
           <td>
-            <a href="#"
+            <a href="{% url "tasks:tag-delete" tag.id%}"
                class="btn btn-secondary">
               Delete
             </a>

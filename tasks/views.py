@@ -36,6 +36,26 @@ class TagListView(ListView):
     template_name = "tasks/tag_list.html"
 
 
+class TagCreateView(CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("tasks:tag-list")
+    template_name = "tasks/tag_form.html"
+
+
+class TagUpdateView(UpdateView):
+    model = Tag
+    fields = "__all__"
+    template_name = "tasks/tag_form.html"
+    success_url = reverse_lazy("tasks:tag-list")
+
+
+class TagDeleteView(DeleteView):
+    model = Tag
+    success_url = reverse_lazy("tasks:tag-list")
+    template_name = "tasks/comfirm_delete_tag.html"
+
+
 def toggle_task(request: HttpRequest, pk: int):
     task = Task.objects.get(pk=pk)
     task.is_completed = not task.is_completed
