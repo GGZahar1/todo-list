@@ -15,5 +15,8 @@ class Task(models.Model):
     is_completed = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag, related_name="tasks")
 
+    class Meta:
+        ordering = ["is_completed", "-created_at"]
+
     def __str__(self) -> str:
         return f"content: {self.content}, deadline: {self.deadline}, is_completed: {self.is_completed}"
