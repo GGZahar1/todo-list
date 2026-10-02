@@ -25,11 +25,11 @@
         </div>
 
         {% if task.is_completed %}
-          <a href="#" class="btn btn-secondary">
+          <a href="{% url "tasks:toggle_task" task.id%}" class="btn btn-secondary">
             Undo
           </a>
         {% else %}
-          <a href="#" class="btn btn-success">
+          <a href="{% url "tasks:toggle_task" task.id%}" class="btn btn-success">
             Complete
           </a>
         {% endif %}
