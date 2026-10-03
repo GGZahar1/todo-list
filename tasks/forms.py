@@ -1,6 +1,4 @@
 from django import forms
-from django.db.models import Model
-
 from tasks.models import Task, Tag
 
 
