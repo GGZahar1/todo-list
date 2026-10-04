@@ -1,7 +1,8 @@
 from django.http import HttpRequest
-from django.shortcuts import render, redirect
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
 
 from tasks.forms import TaskForm
 from tasks.models import Task, Tag
@@ -57,9 +58,9 @@ class TagDeleteView(DeleteView):
     template_name = "tasks/comfirm_delete_tag.html"
 
 
-def toggle_task(request: HttpRequest, pk: int):
-    task = Task.objects.get(pk=pk)
-    task.is_completed = not task.is_completed
-    task.save()
-    return redirect("tasks:task-list")
-
+class ToggleTask(View):
+    def post(self, request: HttpRequest, pk: int) -> HttpResponseRedirect:
+        task = get_object_or_404(Task, pk=pk)
+        task.is_completed = not task.is_completed
+        task.save()
+        return redirect("tasks:task-list")
